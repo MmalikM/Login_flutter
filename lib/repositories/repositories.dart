@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserRepository {
- 
   static String url = "https://zpi-dev.zicare.id/";
   var urlLogin = '$url/api/v1/auth/token';
   var urlRegister = '$url/api/v1/auth/register';
@@ -36,18 +35,24 @@ class UserRepository {
     });
     return response.data['access_token'];
   }
-    Future<String> register(String email, String password, String full_name, String username) async {
+
+  Future<String> register(
+      String full_name, String username, String email, String password) async {
+    print("masuk register bro");
+    print("password " + password);
+    print("full_name " + full_name);
+    print("email: " + email);
+    print("username " + username);
     Response response = await _dio.post(urlRegister, data: {
-      "email": email,
-      "full_name":full_name,
+      "full_name": full_name,
       "username": username,
+      "email": email,
       "password": password,
     });
-    if(response.data['data']['user']){
-      // print(response.data['data']);
-      final token = login(email, password) ;
-      return token;
-    }
-    return "";
+
+    final token = await login(email, password);
+    return token;
+  
+  
   }
 }

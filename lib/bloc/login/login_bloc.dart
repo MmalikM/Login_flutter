@@ -25,4 +25,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     });
   }
+  
 }
+
+class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
+  final UserRepository userRepository;
+  final AuthenticationBloc authenticationBloc;
+
+  RegisterBloc({required this.userRepository, required this.authenticationBloc})
+      : super(RegisterInitial()) {
+    on<RegisterButton>((event, emit) async {
+      emit(RegisterLoading());
+      try {
+        final token = await userRepository.register(
+        event.full_name, event.username, event.email, event.password);
+        authenticationBloc.add(LoggedIn(token: token));
+        emit(RegisterInitial());
+      } catch (error) {
+        print(error);
+        emit(RegisterFailure(error: error.toString()));
+      }
+    });
+  }
+}
+
+ 

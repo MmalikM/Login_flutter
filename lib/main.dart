@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tech_test_zicare/bloc/auth_bloc/auth_bloc.dart';
-import 'package:tech_test_zicare/pages/home.dart';
 import 'package:tech_test_zicare/pages/login.dart';
 import 'package:tech_test_zicare/pages/register.dart';
 import 'package:tech_test_zicare/pages/profile.dart';
@@ -55,6 +54,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey.shade100,
       ),
       debugShowCheckedModeBanner: false,
+
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (context, state) {
           if (state is AuthenticationAuthenticated) {
@@ -62,7 +62,6 @@ class MyApp extends StatelessWidget {
           }
           if (state is AuthenticationUnauthenticated) {
             return LoginPage(userRepository: userRepository);
-            // return RegisterPage(userRepository: userRepository);
           }
           return Scaffold(
             body: Container(

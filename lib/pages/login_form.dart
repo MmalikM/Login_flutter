@@ -125,9 +125,11 @@ class _LoginFormState extends State<LoginForm> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => RegisterPage(
-                                        // userRepository: userRepository,
-                                        )),
+                                    builder: (context) => 
+                                      RegisterPage(
+                                        userRepository: userRepository,
+                                        )
+                                        ),
                               );
                             },
                             child: const Text(
