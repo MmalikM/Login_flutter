@@ -1,11 +1,14 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:tech_test_zicare/bloc/auth_bloc/auth_bloc.dart';
 import 'package:tech_test_zicare/bloc/login/login_bloc.dart';
 import 'package:tech_test_zicare/pages/helper/helper.dart';
 import 'package:tech_test_zicare/repositories/repositories.dart';
+
+import 'login.dart';
+import 'profile.dart';
 
 class FormRegister extends StatefulWidget {
   final UserRepository userRepository;
@@ -36,8 +39,7 @@ class _RegisterFormState extends State<FormRegister> {
           full_name: _fullNameController.text,
           username: _usernameController.text,
           email: _emailController.text,
-          password: _passwordController.text
-          ));
+          password: _passwordController.text));
     }
 
     return BlocListener<RegisterBloc, RegisterState>(
@@ -46,6 +48,11 @@ class _RegisterFormState extends State<FormRegister> {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Register Failed"),
           backgroundColor: Colors.red,
+        ));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Register success, \n silahkan kembali ke login"),
+          backgroundColor: Colors.blue,
         ));
       }
     }, child:

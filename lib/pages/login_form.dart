@@ -129,7 +129,7 @@ class _LoginFormState extends State<LoginForm> {
                                       RegisterPage(
                                         userRepository: userRepository,
                                         )
-                                        ),
+                                      ),
                               );
                             },
                             child: const Text(

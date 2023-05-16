@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tech_test_zicare/bloc/auth_bloc/auth_bloc.dart';
+import 'package:tech_test_zicare/bloc/user/user_bloc.dart';
 import 'package:tech_test_zicare/pages/editProfile.dart';
 import 'package:tech_test_zicare/pages/forgot_pass.dart';
 import 'package:tech_test_zicare/pages/home.dart';
@@ -13,8 +14,16 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final UserBloc _userBloc = UserBloc();
+
   final double _drawerIconSize = 24;
   final double _drawerFontSize = 17;
+
+  @override
+  void initState() {
+    _userBloc.add(GetUserList());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,36 +211,19 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
         ),
-        body: SingleChildScrollView(
-          child: Stack(children: [
-            Container(
-              margin: const EdgeInsets.fromLTRB(20, 10, 20, 5),
-              height: 150,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(width: 5, color: Colors.white),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 20,
-                    offset: Offset(5, 5),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              alignment: Alignment.center,
-              margin: const EdgeInsets.fromLTRB(25, 100, 25, 10),
-              padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: Column(
-                children: [
+        body: BlocProvider(
+          create: (_) => _userBloc,
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (context, state) {
+              return SingleChildScrollView(
+                child: Stack(children: [
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    margin: const EdgeInsets.fromLTRB(20, 10, 20, 5),
+                    height: 150,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(10),
                       border: Border.all(width: 5, color: Colors.white),
-                      color: Colors.lightBlue,
+                      color: Colors.white,
                       boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
@@ -240,90 +232,113 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ],
                     ),
-                    child: Icon(
-                      Icons.person,
-                      size: 80,
-                      color: Colors.grey.shade300,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text(
-                    'Mawar Merah Merona',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   Container(
-                    padding: const EdgeInsets.all(10),
+                    alignment: Alignment.center,
+                    margin: const EdgeInsets.fromLTRB(25, 100, 25, 10),
+                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: Column(
                       children: [
-                        Card(
-                          child: Container(
-                            alignment: Alignment.topLeft,
-                            padding: const EdgeInsets.all(15),
-                            child: Column(
-                              children: [
-                                Column(
-                                  children: [
-                                    ...ListTile.divideTiles(
-                                      color: Colors.grey,
-                                      tiles: [
-                                        const ListTile(
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 4),
-                                          leading: Icon(Icons.person),
-                                          subtitle: Text(
-                                              "you can say anything in this column bro. have fun"),
-                                        ),
-                                        const ListTile(
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 4),
-                                          leading: Icon(Icons.my_location),
-                                          title: Text("Surabaya, Indonesia"),
-                                        ),
-                                        const ListTile(
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 4),
-                                          leading: Icon(Icons.email),
-                                          title: Text("mawar@merahmerona.com"),
-                                        ),
-                                        const ListTile(
-                                          contentPadding: EdgeInsets.symmetric(
-                                              horizontal: 12, vertical: 4),
-                                          leading: Icon(Icons.phone),
-                                          title: Text("+62 82761827638"),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            border: Border.all(width: 5, color: Colors.white),
+                            color: Colors.lightBlue,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 20,
+                                offset: Offset(5, 5),
+                              ),
+                            ],
+                          ),
+                          child: Icon(
+                            Icons.person,
+                            size: 80,
+                            color: Colors.grey.shade300,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Text(
+                          'Mawar Merah Merona',
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              Card(
+                                child: Container(
+                                  alignment: Alignment.topLeft,
+                                  padding: const EdgeInsets.all(15),
+                                  child: Column(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          ...ListTile.divideTiles(
+                                            color: Colors.grey,
+                                            tiles: [
+                                              const ListTile(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 4),
+                                                leading: Icon(Icons.person),
+                                                subtitle: Text(
+                                                    "you can say anything in this column bro. have fun"),
+                                              ),
+                                              const ListTile(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 4),
+                                                leading:
+                                                    Icon(Icons.my_location),
+                                                title:
+                                                    Text("Surabaya, Indonesia"),
+                                              ),
+                                              const ListTile(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 4),
+                                                leading: Icon(Icons.email),
+                                                title: Text(
+                                                    "mawar@merahmerona.com"),
+                                              ),
+                                              const ListTile(
+                                                contentPadding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 12,
+                                                        vertical: 4),
+                                                leading: Icon(Icons.phone),
+                                                title: Text("+62 82761827638"),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
                           ),
                         )
                       ],
                     ),
                   )
-                ],
-              ),
-            )
-          ]),
+                ]),
+              );
+            },
+          ),
         ));
   }
 }
-
-
-// class ProfilePage extends StatelessWidget {
-//   static const routeName = "/profile";
-//   final double _drawerIconSize = 24;
-//   final double _drawerFontSize = 17;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return 
-
-//   }
-// }

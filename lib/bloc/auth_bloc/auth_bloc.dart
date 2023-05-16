@@ -1,5 +1,4 @@
 
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 // ignore: depend_on_referenced_packages
@@ -25,6 +24,7 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent,AuthenticationState>{
       emit(AuthenticationLoading());
       await userRepository.addToken(event.token);
       emit(AuthenticationAuthenticated());
+      
     });
 
     on<LoggedOut>((event, emit) async{
