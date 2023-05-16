@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:tech_test_zicare/bloc/auth_bloc/auth_bloc.dart';
 import 'package:tech_test_zicare/pages/login.dart';
-import 'package:tech_test_zicare/pages/register.dart';
 import 'package:tech_test_zicare/pages/profile.dart';
 import 'package:tech_test_zicare/repositories/repositories.dart';
 

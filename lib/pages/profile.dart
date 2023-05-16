@@ -277,7 +277,7 @@ Widget detailProfile(BuildContext context, UserProfile user) {
             ),
              Text(
               user.fullName,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20,
@@ -298,9 +298,9 @@ Widget detailProfile(BuildContext context, UserProfile user) {
                                 color: Colors.grey,
                                 tiles: [
                                    ListTile(
-                                    contentPadding: EdgeInsets.symmetric(
+                                    contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 12, vertical: 4),
-                                    leading: Icon(Icons.person),
+                                    leading: const Icon(Icons.person),
                                     subtitle: Text(
                                         "hay ${user.username} welcome to ZiCare. have fun"),
                                   ),
@@ -313,7 +313,7 @@ Widget detailProfile(BuildContext context, UserProfile user) {
                                    ListTile(
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 12, vertical: 4),
-                                    leading: Icon(Icons.email),
+                                    leading: const Icon(Icons.email),
                                     title: Text(user.email),
                                   ),
                                   const ListTile(

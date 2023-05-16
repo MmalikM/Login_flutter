@@ -49,20 +49,20 @@ class UserProfile {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['email'] = this.email;
-    data['username'] = this.username;
-    data['full_name'] = this.fullName;
-    data['avatar'] = this.avatar;
-    data['person_id'] = this.personId;
-    data['fcm_token'] = this.fcmToken;
-    data['covid19_self_isolation'] = this.covid19SelfIsolation;
-    data['covid19_rdt'] = this.covid19Rdt;
-    data['default_hospital_id'] = this.defaultHospitalId;
-    data['last_login_at'] = this.lastLoginAt;
-    data['email_activated_at'] = this.emailActivatedAt;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['id'] = id;
+    data['email'] = email;
+    data['username'] = username;
+    data['full_name'] = fullName;
+    data['avatar'] = avatar;
+    data['person_id'] = personId;
+    data['fcm_token'] = fcmToken;
+    data['covid19_self_isolation'] = covid19SelfIsolation;
+    data['covid19_rdt'] = covid19Rdt;
+    data['default_hospital_id'] = defaultHospitalId;
+    data['last_login_at'] = lastLoginAt;
+    data['email_activated_at'] = emailActivatedAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }
