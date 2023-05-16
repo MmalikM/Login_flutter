@@ -6,7 +6,7 @@ class UserRepository {
   static String url = "https://zpi-dev.zicare.id/";
   var urlLogin = '$url/api/v1/auth/token';
   var urlRegister = '$url/api/v1/auth/register';
-  var urlGetProfile = '$url/api/v1/users/me';
+  var urlGetProfile = '$url/api/v1/users/me/';
 
   final FlutterSecureStorage storage = const FlutterSecureStorage();
   final Dio _dio = Dio();
@@ -57,17 +57,16 @@ class UserRepository {
 
   Future<UserProfile> fetchUser() async {
     var token = await storage.read(key: 'token');
+    
     try {
-      print(token);
-      print("sebelum masuk dio");
-      Response response = await _dio.get(urlGetProfile, options: Options(
+      Response response = await _dio.get(urlGetProfile, 
+      options: Options(
         headers: {
           'Authorization':'Bearer $token',
         }
-      ));
-      print("dapet data");
-      print(response.data['data']['user']);
-      // return UserProfile.fromJson(response.data);
+      )
+      );
+ 
       return UserProfile.fromJson(response.data['data']['user']);
     } catch (error) {
       throw error;

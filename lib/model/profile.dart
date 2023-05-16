@@ -3,14 +3,14 @@ class UserProfile {
   String email= '';
   String username= '';
   String fullName= '';
-  String avatar= '';
-  String personId= '';
-  String fcmToken= '';
-  String covid19SelfIsolation= '';
-  String covid19Rdt= '';
-  String defaultHospitalId= '';
-  String lastLoginAt= '';
-  String emailActivatedAt= '';
+  Null avatar;
+  Null personId;
+  Null fcmToken;
+  Null covid19SelfIsolation;
+  Null covid19Rdt;
+  Null defaultHospitalId;
+  String lastLoginAt='';
+  Null emailActivatedAt;
   String createdAt= '';
   String updatedAt= '';
 
@@ -19,14 +19,14 @@ class UserProfile {
       required this.email,
       required this.username,
       required this.fullName,
-      this.avatar ="null",
-      this.personId ="null",
-      this.fcmToken="null",
-      this.covid19SelfIsolation="null",
-      this.covid19Rdt="null",
-      this.defaultHospitalId="null",
+      this.avatar ,
+      this.personId ,
+      this.fcmToken,
+      this.covid19SelfIsolation,
+      this.covid19Rdt,
+      this.defaultHospitalId,
       required this.lastLoginAt,
-      this.emailActivatedAt="null",
+      this.emailActivatedAt,
       required this.createdAt,
       required this.updatedAt});
 

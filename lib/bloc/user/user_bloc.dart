@@ -12,10 +12,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
     on<GetUserList>((event, emit) async {
       try {
-        emit (UserLoading());
+        emit(UserLoading());
         final detailUser = await _user.fetchUser();
         emit(UserLoaded(detailUser));
-      } catch (error){
+      } catch (error) {
         print(error);
       }
     });

@@ -49,7 +49,7 @@ class _RegisterFormState extends State<FormRegister> {
           content: Text("Register Failed"),
           backgroundColor: Colors.red,
         ));
-      } else {
+      } else if (state is RegisterInitial){
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Register success, \n silahkan kembali ke login"),
           backgroundColor: Colors.blue,
